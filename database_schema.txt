@@ -1,0 +1,47 @@
+--- SIMPSONS DATABASE SCHEMA ---
+
+Table: characters
+Columns:
+  - id (INTEGER)
+  - name (TEXT)
+  - normalized_name (TEXT)
+  - gender (TEXT)
+
+Table: episodes
+Columns:
+  - id (INTEGER)
+  - image_url (TEXT)
+  - imdb_rating (REAL)
+  - imdb_votes (REAL)
+  - number_in_season (INTEGER)
+  - number_in_series (INTEGER)
+  - original_air_date (TEXT)
+  - original_air_year (INTEGER)
+  - production_code (TEXT)
+  - season (INTEGER)
+  - title (TEXT)
+  - us_viewers_in_millions (REAL)
+  - video_url (TEXT)
+  - views (REAL)
+
+Table: locations
+Columns:
+  - id (INTEGER)
+  - name (TEXT)
+  - normalized_name (TEXT)
+
+Table: script_lines
+Columns:
+  - id (INTEGER)
+  - episode_id (INTEGER)
+  - number (INTEGER)
+  - raw_text (TEXT)
+  - timestamp_in_ms (TEXT)
+  - speaking_line (TEXT)
+  - character_id (TEXT)
+  - location_id (REAL)
+  - raw_character_text (TEXT)
+  - raw_location_text (TEXT)
+  - spoken_words (TEXT)
+  - normalized_text (TEXT)
+  - word_count (TEXT)

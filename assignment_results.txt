@@ -1,0 +1,68 @@
+Q: Who is the wife of Homer?
+SQL: 
+SELECT name
+FROM characters
+WHERE name = 'Marge Simpson';
+
+Res: [('Marge Simpson',)]
+
+Q: List all characters with the last name 'Simpson'
+SQL: 
+SELECT name
+FROM characters
+WHERE name LIKE '%Simpson';
+
+Res: [('Maggie Simpson',), ('Marge Simpson',), ('Bart Simpson',), ('Lisa Simpson',), ('Grampa Simpson',), ('Mona Simpson',), ('Great Grampa Simpson',), ('GREAT GRAMMA SIMPSON',), ('Dr. Simpson',), ('DETECTIVE HOMER SIMPSON',), ('Virgil Simpson',), ('MINION MARGE SIMPSON',), ('MINION HOMER SIMPSON',), ('Homer Simpson',)]
+
+Q: How many total characters are in the database?
+SQL: 
+SELECT COUNT(id) FROM characters;
+
+Res: [(6722,)]
+
+Q: Which location has the ID of 1?
+SQL: 
+SELECT name FROM locations WHERE id = 1;
+
+Res: [('Street',)]
+
+Q: What is the name of the character with the most script lines?
+SQL: 
+SELECT T1.name
+FROM characters AS T1
+INNER JOIN script_lines AS T2
+  ON T1.id = T2.character_id
+GROUP BY
+  T1.id
+ORDER BY
+  COUNT(T2.id) DESC
+LIMIT 1;
+
+Res: [('Homer Simpson',)]
+
+Q: Show the titles of the first 5 episodes
+SQL: 
+SELECT title
+FROM episodes
+ORDER BY number_in_series
+LIMIT 5;
+
+Res: [('Simpsons Roasting on an Open Fire',), ('Bart the Genius',), ("Homer's Odyssey",), ("There's No Disgrace Like Home",), ('Bart the General',)]
+
+Q: Which episode has the highest IMDB rating?
+SQL: 
+SELECT title
+FROM episodes
+ORDER BY imdb_rating DESC
+LIMIT 1;
+
+Res: [('You Only Move Twice',)]
+
+Q: Which characters from The Simpsons show are clowns?
+SQL: 
+SELECT name
+FROM characters
+WHERE LOWER(name) LIKE '%clown%';
+
+Res: [('Clown Bed',), ('Disheveled Clown',), ('Rodeo Clown #1',), ('Rodeo Clown #2',), ('Clown',), ('Clownface',), ('Trans-Clown-o-Morph',), ('Circus Clown',), ('Crazy Clown',), ('Irish Clown Father',), ('Krusty the Clown',)]
+
