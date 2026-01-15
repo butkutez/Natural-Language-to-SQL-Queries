@@ -66,3 +66,28 @@ WHERE LOWER(name) LIKE '%clown%';
 
 Res: [('Clown Bed',), ('Disheveled Clown',), ('Rodeo Clown #1',), ('Rodeo Clown #2',), ('Clown',), ('Clownface',), ('Trans-Clown-o-Morph',), ('Circus Clown',), ('Crazy Clown',), ('Irish Clown Father',), ('Krusty the Clown',)]
 
+Q: Who are the children of Homer?
+SQL: 
+SELECT T1.name
+FROM characters AS T1
+JOIN characters AS T2
+  ON T1.name LIKE '%' || SUBSTR(T2.name, INSTR(T2.name, ' ') + 1)
+WHERE
+  T2.name = 'Homer Simpson' AND T1.name <> 'Homer Simpson';
+
+Result: [('Maggie Simpson',), ('Marge Simpson',), ('Bart Simpson',), ('Lisa Simpson',), ('Grampa Simpson',), ('Mona Simpson',), ('Great Grampa Simpson',), ('GREAT GRAMMA SIMPSON',), ('Dr. Simpson',), ('DETECTIVE HOMER SIMPSON',), ('Virgil Simpson',), ('MINION MARGE SIMPSON',), ('MINION HOMER SIMPSON',)]
+
+Q: How many lines of script does Homer Simpson have in Season 12, episode 10?
+SQL: 
+SELECT
+  COUNT(T1.id)
+FROM script_lines AS T1
+INNER JOIN characters AS T2
+  ON T1.character_id = T2.id
+INNER JOIN episodes AS T3
+  ON T1.episode_id = T3.id
+WHERE
+  T2.name = 'Homer Simpson' AND T3.season = 12 AND T3.number_in_season = 10;
+
+Result: [(53,)]
+
