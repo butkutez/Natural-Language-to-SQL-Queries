@@ -239,11 +239,6 @@ simpsons_*.db
 # Credentials (CRITICAL: Never upload your API key!)
 .env
 
-# Database initialization scripts
-setup.py
-build_db.py
-exploring_schema.py
-
 # Large Data Files
 simpsons.db
 data/
@@ -257,3 +252,5 @@ __pycache__/
 .vscode/
 
 README_.md
+simpsons.db
+Simpsons.png

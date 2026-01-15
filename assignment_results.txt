@@ -91,3 +91,25 @@ WHERE
 
 Result: [(53,)]
 
+Q: What is the name of children in the Simpsons family?
+SQL: 
+SELECT name
+FROM characters
+WHERE name IN ('Bart Simpson', 'Lisa Simpson', 'Maggie Simpson');
+
+Result: [('Maggie Simpson',), ('Bart Simpson',), ('Lisa Simpson',)]
+
+Q: How many seasons does the show have?
+SQL: 
+SELECT COUNT(DISTINCT season) FROM episodes;
+
+Result: [(28,)]
+
+Q: Who is the olderst daughter of Homer?
+SQL: 
+SELECT name
+FROM characters
+WHERE name = 'Lisa Simpson';
+
+Result: [('Lisa Simpson',)]
+
