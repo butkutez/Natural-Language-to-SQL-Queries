@@ -121,3 +121,27 @@ WHERE name IN ('Bart Simpson', 'Lisa Simpson', 'Maggie Simpson');
 
 Result: [(3,)]
 
+Q: How many character does the show have?
+SQL: 
+SELECT COUNT(id) FROM characters;
+
+Result: [(6722,)]
+
+Q: What will Lisa become in the future? 
+SQL: 
+SELECT
+  T1.spoken_words
+FROM script_lines AS T1
+WHERE
+  (
+    T1.spoken_words LIKE '%Lisa%'
+    AND (
+      T1.spoken_words LIKE '%will become%' OR T1.spoken_words LIKE '%will be a%' OR T1.spoken_words LIKE '%future job%' OR T1.spoken_words LIKE '%grows up to be%' OR T1.spoken_words LIKE '%her future%'
+    )
+  )
+ORDER BY
+  T1.episode_id,
+  T1.number;
+
+Result: [('Permit me to demonstrate. Lisa, shut your eyes. Soon you will be at peace.',), ("And while on Ventnor Avenue you'll be staying at the fabulous Hotel Lisa. A valet will be around shortly to park your thimble. Of course, there is the unpleasant matter of the bill.",), ('Lisa, Lisa, your suspicions are important to me and will be answered in the order received. MacARTHUR PARK IS MELTING IN THE DARK / ALL THAT SWEET GREEN ICING ROLLING DOWN / SOMEONE LEFT MY CAKE OUT IN THE LI-LI-LI-LI-LI-LI-LI-LI- LI... LI... LI... LI...',), ('Attention everyone. Please welcome our Valedictorian, Lisa Simpson. She will be attending Yale...I mean, Hot Dog on a Stick Management Camp.',)]
+
