@@ -1,4 +1,4 @@
-**<font size="6" color="white">Simpsons SQL Sorcerer</font>**
+**<font size="12" color="white">Simpsons SQL Sorcerer</font>**
 <br>
 **<font size="3" color="white">Natural Language to SQL Assistant</font>**
 #
