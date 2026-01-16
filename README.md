@@ -1,4 +1,7 @@
-# Simpsons SQL Sorcerer (Natural Language to SQL Assistant)
+**<font size="6" color="white">Simpsons SQL Sorcerer</font>**
+<br>
+**<font size="3" color="white">Natural Language to SQL Assistant</font>**
+#
 
 [![forthebadge made-with-python](https://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![forthebadge made-with-python](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=Made+with&secondaryLabel=SQL&primaryBGColor=%2331C4F3&primaryTextColor=%23FFFFFF&secondaryBGColor=%23389AD5&secondaryTextColor=%23FFFFFF&primaryFontSize=11&primaryFontWeight=400&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=sqlite&secondaryIconColor=%23FFFFFF&secondaryIconSize=16&secondaryIconPosition=left)](https://forthebadge.com/generator)
@@ -139,15 +142,14 @@ This snippet shows how the assistant gains "context" by reading the schema and i
 
 ```python
 def generate_sql(user_question):
-    # Context-loading: Providing the LLM with the database structure
+    """Translating natural language into SQL by injecting the schema into the prompt."""
     schema = get_schema_from_file()
+
+    # Engineering the prompt to enforce a 'SQL-only' output format
     prompt = f"Schema: {schema}\nRequest: {user_question}\nReturn only SQL."
+    response = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
     
-    response = client.models.generate_content(
-        model='gemini-2.0-flash', 
-        contents=prompt
-    )
-    # Cleaning the output to ensure executable SQL
+    # Sanitizing the response by stripping backticks and markdown formatting
     return response.text.strip().replace("```sql", "").replace("```", "")
 ```
 ## Robust SQL Execution
@@ -156,24 +158,27 @@ This demonstrates the ability to manage database connections safely and handle p
 
 ```python
 def run_query(sql):
+    """Executing the generated SQL against the SQLite database and fetching raw results."""
     conn = sqlite3.connect('simpsons.db')
     cursor = conn.cursor()
     try:
         cursor.execute(sql)
-        return cursor.fetchall()
+        rows = cursor.fetchall()
+        return rows
     except Exception as e:
         return f"SQL Error: {e}"
     finally:
-        conn.close() # Ensuring connection closure to prevent database locks
+        # Ensuring the database connection is closed safely
+        conn.close()
 ```
 
 ##  Automated Audit Logging
 This implementation facilitates AI performance monitoring by archiving the complete "Question $\rightarrow$ SQL $\rightarrow$ Result" lifecycle. By capturing the raw SQL alongside the user’s intent, the system ensures transparency and provides a dataset for future prompt optimization.
 
 ```python
-
-with open("assignment_results.txt", "a", encoding="utf-8") as f:
-    f.write(f"Q: {question}\nSQL: {sql}\nResult: {results}\n\n")
+# Appending the interaction to a log file for history tracking    
+    with open("assignment_results.txt", "a", encoding="utf-8") as f:
+        f.write(f"Q: {question}\nSQL: {sql}\nResult: {results}\n\n")
 ```
 *E*.*g*. Output:
 ```
@@ -206,7 +211,7 @@ By combining the Google Gemini 2.5 Flash model with a local SQLite database, I t
 
 
 ## **Timeline**
-This solo project was completed over 1 day.
+This solo project was completed over 2 days.
 
 ## **Personal Situation**
 This project was completed as part of the AI & Data Science Bootcamp at BeCode.org.
