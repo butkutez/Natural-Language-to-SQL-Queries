@@ -113,3 +113,11 @@ WHERE name = 'Lisa Simpson';
 
 Result: [('Lisa Simpson',)]
 
+Q: How many children does Homer Simpson and Marge Simpson have?
+SQL: 
+SELECT COUNT(name)
+FROM characters
+WHERE name IN ('Bart Simpson', 'Lisa Simpson', 'Maggie Simpson');
+
+Result: [(3,)]
+

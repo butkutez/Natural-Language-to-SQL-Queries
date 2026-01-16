@@ -5,6 +5,7 @@ def save_schema_to_file():
     cursor = conn.cursor()
     
     # Get all table names
+    # sqlite_master stores the actual information about the database schema (built-in function)
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = cursor.fetchall()
     
@@ -18,6 +19,7 @@ def save_schema_to_file():
             f.write("Columns:\n")
             
             # Get column details
+            # # PRAGMA is a special SQLite command used to inspect the database structure (metadata) rather than the data itself.
             cursor.execute(f"PRAGMA table_info({table_name});")
             columns = cursor.fetchall()
             for col in columns:
