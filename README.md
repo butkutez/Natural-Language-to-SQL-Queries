@@ -1,7 +1,4 @@
-**<font size="12" color="white">Simpsons SQL Sorcerer</font>**
-<br>
-**<font size="3" color="white">Natural Language to SQL Assistant</font>**
-#
+# **Simpsons SQL Sorcerer** - Natural Language to SQL Assistant
 
 [![forthebadge made-with-python](https://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![forthebadge made-with-python](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=Made+with&secondaryLabel=SQL&primaryBGColor=%2331C4F3&primaryTextColor=%23FFFFFF&secondaryBGColor=%23389AD5&secondaryTextColor=%23FFFFFF&primaryFontSize=11&primaryFontWeight=400&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=sqlite&secondaryIconColor=%23FFFFFF&secondaryIconSize=16&secondaryIconPosition=left)](https://forthebadge.com/generator)
